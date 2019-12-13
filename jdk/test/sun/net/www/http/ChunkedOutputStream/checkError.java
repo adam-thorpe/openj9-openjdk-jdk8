@@ -82,6 +82,7 @@ public class checkError {
 
         int byteAtOnce = 0;
         int sendingBytes = totalBytes;
+		int i=0;
         try {
             while (sendingBytes > 0) {
                 if (sendingBytes > bufferSize) {
@@ -89,6 +90,7 @@ public class checkError {
                 } else {
                     byteAtOnce = sendingBytes;
                 }
+				System.out.println(i++);
                 toServer.write(buffer, 0, byteAtOnce);
                 sendingBytes -= byteAtOnce;
                 // System.out.println((totalBytes - sendingBytes) + " was sent");
@@ -100,7 +102,7 @@ public class checkError {
             testStatus = TEST_FAILED;
             testExit();
         } catch (IOException e) {
-            // e.printStackTrace();
+            e.printStackTrace();
             // this is the expected IOException
             // due to server.close()
             testStatus = TEST_PASSED;
